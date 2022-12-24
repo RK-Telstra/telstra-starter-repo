@@ -3,7 +3,7 @@ package au.com.telstra.simcardactivator;
 public class JsonPayload {
 
     private final long id;
-    private final String iccid;
+    public final String iccid;
     private final String customerEmail;
 
     public JsonPayload(long id, String iccid, String customerEmail){
