@@ -9,18 +9,20 @@ public class ResponseActuator {
     public ResponseActuator(){
     }
 
-    public Boolean getSuccess() {
+    public ResponseActuator(boolean success){
+        this.success = success;
+    }
+    public boolean getSuccess() {
         return success;
     }
 
-    public void setSuccess(Boolean success){
+    public void setSuccess(boolean success){
         this.success = success;
     }
 
     @Override
     public String toString() {
-        return "ResponseActuator{" +
-                "success='" + success + '\'' + '}';
+        return "ResponseActuator {success=" + success + "}";
 
     }
 }
