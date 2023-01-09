@@ -1,34 +1,33 @@
 package au.com.telstra.simcardactivator;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
 
 
 @Entity
 public class CustomerData {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue()
     private Long id;
+    @Column(nullable = false)
     private String iccid;
+
+    @Column(nullable = false)
     private String customerEmail;
+    @Column(nullable = false)
     private Boolean active;
 
-    protected CustomerData() {}
+    protected CustomerData() {
 
-    public CustomerData(String iccid, String customerEmail, Boolean active) {
-        this.iccid = iccid;
-        this.customerEmail = customerEmail;
-        this.active = active;
     }
 
-    @Override
-    public String toString() {
-        return String.format( "CustomerData[id%d, iccid='%s', customerEmail='%s', active=%b]", id, iccid, customerEmail, active);
+    public CustomerData(JsonPayload jsonPayload, ResponseActuator responseActuator) {
+        this.iccid = jsonPayload.getIccid();
+        this.customerEmail = jsonPayload.getCustomerEmail();
+        this.active = responseActuator.getSuccess();
     }
+
 
     public Long getId() {
         return id;
@@ -44,5 +43,10 @@ public class CustomerData {
 
     public Boolean getActive() {
         return active;
+    }
+
+    @Override
+    public String toString() {
+        return "CustomerData {id=" + id + ", iccid=" + iccid + ", customerEmail=" + customerEmail + ", active=" + active + ")";
     }
 }

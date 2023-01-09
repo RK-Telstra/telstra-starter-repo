@@ -17,6 +17,11 @@ public class JsonPayload {
 
     }
 
+    public JsonPayload(CustomerData customerData){
+        this.iccid = customerData.getIccid();
+        this.customerEmail = customerData.getCustomerEmail();
+        this.active = customerData.getActive();
+    }
     public String getIccid() {
         return iccid;
     }
